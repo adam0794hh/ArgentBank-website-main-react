@@ -22,6 +22,20 @@
 .main-nav-item {
     text-decoration: none;
     margin-right: 0.5rem;
+    
+}
+.button-nav-item {
+    text-decoration: none;
+    margin-right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 15px;
+    cursor: pointer;
+}
+.fa-sign-out {
+    margin-right: 3px;
 }
 .main-nav-item i {
     margin-right: 3px;
