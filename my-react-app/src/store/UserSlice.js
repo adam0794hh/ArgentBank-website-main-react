@@ -8,12 +8,10 @@ export const loginUser = createAsyncThunk(
     async (userCredentials) => {
       try {
         const response = await axios.post('http://localhost:3001/api/v1/user/login', userCredentials);
-        console.log(response.data);
   
         if (response.status === 200) {
           const token = response.data.body.token;
           localStorage.setItem('token', token);
-          console.log(token)
           return token;
         } else if (response.status === 400) {
           throw new Error('Invalid Fields');
@@ -32,7 +30,7 @@ const userSlice = createSlice({
         loading : false,
         user: null,
         error: null,
-        token: null,
+        token: localStorage.getItem('token') || null,
     },
     reducers: {
       logoutUser: (state) => {
@@ -55,13 +53,12 @@ const userSlice = createSlice({
             state.user = action.payload;
             state.error = null;
             state.token = action.payload;
-            console.log(state.token);
         })
         .addCase(loginUser.rejected,(state,action)=>{
             state.loading = false;
             state.user = null;
             console.log(action.error.message);
-            if (action.error.message === 'Request failed with status code 401'){
+            if (action.error.message === 'Request failed with status code 400'){
                 state.error = 'Access Denied! Invalid Credentials';
             }
             else {

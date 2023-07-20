@@ -5,13 +5,12 @@ import axios from 'axios';
 export const fetchUserData = createAsyncThunk('userData/fetchUserData', async (_, { getState }) => {
   try {
     const token = getState().user.token;
-    console.log(token)
     const response = await axios.post('http://localhost:3001/api/v1/user/profile', null, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
-    console.log(response.data);
+    
     return response.data;
   } catch (error) {
     throw error;
@@ -21,8 +20,6 @@ export const fetchUserData = createAsyncThunk('userData/fetchUserData', async (_
 export const updateUsername = createAsyncThunk('userData/updateUsername', async (username, { getState }) => {
   try {
     const token = getState().user.token;
-    console.log(token)
-    console.log({ userName: username.userName })
     const response = await axios.put(
       'http://localhost:3001/api/v1/user/profile',
       { userName: username.userName },
@@ -33,7 +30,6 @@ export const updateUsername = createAsyncThunk('userData/updateUsername', async 
         },
       }
     );
-    console.log("API response:", response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -55,6 +51,15 @@ const userDataSlice = createSlice({
           state.userData = JSON.parse(storedUserData);
         }
       },
+      resetUserData: (state) => {
+        state.loading = false;
+        state.userData = null;
+        state.error = null;
+        localStorage.removeItem('userData');
+      },
+      updateUserData: (state, action) => {
+        state.userData = action.payload;
+      },
     },
     extraReducers: (builder) => {
       builder
@@ -68,7 +73,6 @@ const userDataSlice = createSlice({
           state.userData = action.payload;
           state.error = null;
           localStorage.setItem('userData', JSON.stringify(action.payload));
-          console.log(state);
         })
         .addCase(fetchUserData.rejected, (state, action) => {
           state.loading = false;
@@ -93,4 +97,5 @@ const userDataSlice = createSlice({
   
 export const { actions: userDataActions, reducer: userDataReducer } = userDataSlice;
 export const { restoreUserData } = userDataSlice.actions;
+export const { resetUserData } = userDataSlice.actions;
 export default userDataReducer;
