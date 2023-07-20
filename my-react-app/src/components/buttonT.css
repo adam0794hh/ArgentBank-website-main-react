@@ -26,6 +26,7 @@
     padding: 0;
     font-size: 1rem;
     font-weight: normal;
+    white-space: nowrap;
 }
 .account-amount {
     margin: 0;
@@ -46,3 +47,36 @@
     background-color: #00bc77;
     color: #fff;
 }
+@media (max-width: 960px) {
+    .account {
+      flex-direction: row;
+    }
+  
+    .account-content-wrapper2 {
+      flex: 0;
+    }
+  
+    .transaction-button {
+      width: 200px;
+    }
+}
+@media (max-width: 700px) {
+    .account {
+      flex-direction: column;
+    }
+  
+    .account-content-wrapper2 {
+      flex: 0;
+      justify-content: flex-start;
+    }
+  
+    .transaction-button {
+      width: 100%;
+    }
+    .user-details {
+      width: 249px;
+    }
+    .edit-button {
+      width: 104px;
+    }
+  }

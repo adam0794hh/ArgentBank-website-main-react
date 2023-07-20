@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../store/UserSlice';
 import { useNavigate } from 'react-router-dom';
 import "./Navbar.css"
+import { resetUserData } from '../store/userDataSlice';
 
 
 function Navuser() {
@@ -12,6 +13,7 @@ function Navuser() {
   const userData = useSelector((state) => state.userData);
   const handleLogout = () => {
     dispatch(logoutUser());
+    dispatch(resetUserData());
     navigate('/signin');
   };
   return (
@@ -25,12 +27,12 @@ function Navuser() {
                 />
             </a>
             <div>
-            {userData.userData && ( <a class="main-nav-item">
-                  <i class="fa fa-user-circle"></i>
+            {userData.userData && ( <a className="main-nav-item">
+                  <i className="fa fa-user-circle"></i>
                   {userData.userData.body.firstName}
                 </a>)}
                 <button onClick={handleLogout} className="button-nav-item">
-                  <i class="fa fa-sign-out"></i>
+                  <i className="fa fa-sign-out"></i>
                   Sign Out
                 </button>
             </div>

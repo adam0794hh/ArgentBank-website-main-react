@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Signin.css"
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../store/UserSlice';
 import { fetchUserData } from '../store/userDataSlice';
 
@@ -13,6 +13,7 @@ function Signin() {
     const [email,setemail] = useState("")
     const [password,setpassword] = useState("")
 
+    const {loading,error} = useSelector((state)=>state.user);
 
     const dispatch = useDispatch();
     const handleLogin = (e) => {
@@ -39,18 +40,23 @@ function Signin() {
                 <h1>Sign In</h1>
                 <form onSubmit={handleLogin}>
                     <div className="input-wrapper">
-                        <label For="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input type="email" id="username" name="username" value={email} onChange={(e)=>setemail(e.target.value)}/>
                     </div>
                     <div className="input-wrapper">
-                        <label For="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" id="password" value={password} onChange={(e)=>setpassword(e.target.value)}></input>
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" /><label for="remember-me"
+                        <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
                         >Remember me</label>
                     </div>
-                    <button type='submit' class="sign-in-button">Sign In</button>
+                    <button type='submit' className="sign-in-button">
+                        {loading?'loading...':'Sign In'}
+                    </button>
+                    {error && (
+                        <div className='alert-danger'role='alert'>{error}</div>
+                    )}
                     
                 </form>
             </section>
