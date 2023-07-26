@@ -8,10 +8,8 @@ import User from './pages/User';
 import store from './store';
 import App from './App';
 import { fetchUserData } from './store/userDataSlice';
-import Modal from 'react-modal';
 
 const userData = JSON.parse(localStorage.getItem('userData'));
-Modal.setAppElement('#root'); // Définir l'élément racine de votre application
 
 // Dispatch l'action pour mettre à jour le store avec les données utilisateur
 if (userData) {

@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../store/UserSlice';
-import { fetchUserData } from '../store/userDataSlice';
 
 
 function Signin() {
