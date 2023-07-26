@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className='main-nav'>
         <NavLink to= "/" className='main-nav-logo'>
-            <img className='main-nav-logo-image' src='/argentBankLogo.png'></img>
+            <img className='main-nav-logo-image' src='/argentBankLogo.png' alt='Argent Bank Logo'></img>
         </NavLink>
         <div>
           <NavLink to= "/signin"className='main-nav-item'>
