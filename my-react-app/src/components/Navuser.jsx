@@ -29,7 +29,7 @@ function Navuser() {
             <div>
             {userData.userData && ( <a className="main-nav-item">
                   <i className="fa fa-user-circle"></i>
-                  {userData.userData.body.firstName}
+                  {userData.userData.body.userName}
                 </a>)}
                 <button onClick={handleLogout} className="button-nav-item">
                   <i className="fa fa-sign-out"></i>

@@ -40,14 +40,16 @@ function Signin() {
                 <form onSubmit={handleLogin}>
                     <div className="input-wrapper">
                         <label htmlFor="username">Username</label>
-                        <input type="email" id="username" name="username" value={email} onChange={(e)=>setemail(e.target.value)}/>
+                        <input type="email" id="username" name="username" value={email} 
+                        onChange={(e)=>setemail(e.target.value)}/>
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" value={password} onChange={(e)=>setpassword(e.target.value)}></input>
+                        <input type="password" id="password" value={password} 
+                        onChange={(e)=>setpassword(e.target.value)}></input>
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
+                        <input type="checkbox" id="remember-me"/><label htmlFor="remember-me"
                         >Remember me</label>
                     </div>
                     <button type='submit' className="sign-in-button">
